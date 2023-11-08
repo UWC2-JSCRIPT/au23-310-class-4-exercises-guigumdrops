@@ -8,3 +8,6 @@ const makeCoffee = (isHot) => {
   }
   return coffee
 }
+const isHot = "hot"
+console.log(makeCoffee())
+console.log(makeCoffee(isHot))
