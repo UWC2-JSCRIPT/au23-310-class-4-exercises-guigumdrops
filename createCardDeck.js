@@ -2,67 +2,56 @@
  * Returns an array of 52 Cards
  * @returns {Array} deck - a deck of cards
  */
-const getDeck = () => {
-  const deck = []
-  const suits = ['hearts', 'spades', 'clubs', 'diamonds']
 
-  for (let index = 0; index < suits.length; index++) {
-    // create an array of 13 objects
-    for (let j = 1; j <= 13; j++) {
-      // for each loop, push a card object to the deck
+function getDeck() {
+  const suits = ['Hearts', 'Spades', 'Clubs', 'Diamonds'];
+  const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+  const deck = [];
 
-      // special cases for when j > 10
-      const displayVal = ''
-
-      switch (j) {
-        case j === 1:
-          displayVal = 'Ace'
-          break
-        case j > 1 && j <= 10:
-          displayVal = j
-          break
-        case j === 11:
-          displayVal = 'Jack'
-          break
-        case j === 12:
-          displayVal = 'Queen'
-          break
-        case j === 13:
-          displayVal = 'King'
-          break
+  for (const suit of suits) {
+    for (const value of values) {
+      let val = 0;
+      let displayVal = value;
+      if (value === 'Jack' || value === 'Queen' || value === 'King') {
+        val = 10;
+      } else if (value === 'Ace') {
+        val = 11;
+      } else {
+        val = parseInt(value);
       }
 
       const card = {
-        val: j,
+        suit: suit,
         displayVal: displayVal,
-        suit: suits[index],
-      }
+        val: val,
+      };
 
-      if (displayVal === 'Ace') {
-        card.val = 11
-      }
-
-      deck.push(card)
+      deck.push(card);
     }
   }
+
+  return deck;
 }
 
-// CHECKS
-const deck = getDeck()
-console.log(`Deck length equals 52? ${deck.length === 52}`)
+const deckOfCards = getDeck();
+console.log(deckOfCards);
 
-const randomCard = deck[Math.floor(Math.random() * 52)]
+// CHECKS
+const deck = getDeck();
+console.log(`Deck length equals 52? ${deck.length === 52}`);
+
+const randomCard = deck[Math.floor(Math.random() * 52)];
 
 const cardHasVal =
-  randomCard && randomCard.val && typeof randomCard.val === 'number'
-console.log(`Random card has val? ${cardHasVal}`)
+  randomCard && randomCard.val && typeof randomCard.val === 'number';
+console.log(`Random card has val? ${cardHasVal}`);
 
 const cardHasSuit =
-  randomCard && randomCard.suit && typeof randomCard.suit === 'string'
-console.log(`Random card has suit? ${cardHasSuit}`)
+  randomCard && randomCard.suit && typeof randomCard.suit === 'string';
+console.log(`Random card has suit? ${cardHasSuit}`);
 
 const cardHasDisplayVal =
   randomCard &&
   randomCard.displayVal &&
-  typeof randomCard.displayVal === 'string'
-console.log(`Random card has display value? ${cardHasDisplayVal}`)
+  typeof randomCard.displayVal === 'string';
+console.log(`Random card has display value? ${cardHasDisplayVal}`);
