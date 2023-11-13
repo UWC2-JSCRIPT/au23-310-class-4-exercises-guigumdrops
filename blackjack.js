@@ -1,4 +1,4 @@
-const blackjackDeck = getDeck();
+//const blackJackDeck = getDeck();
 // /**
 //  * Represents a card player (including dealer).
 //  * @constructor
@@ -86,7 +86,7 @@ const getMessage = (count, dealerCard) => {
 const showHand = (player) => {
   const displayHand = player.hand.map((card) => card.displayVal);
   console.log(
-    `${player.name}'s hand is ${displayHand.join(', ')} (${
+    `${player.name}'s hand is ${displayHand} (${
       calcPoints(player.hand).total
     })`
   );
